@@ -65,10 +65,10 @@ print(url);
       },
       child : Scaffold(
 
-    backgroundColor: Colors.pink[200],
+        
    
  appBar: AppBar(
-      backgroundColor : Colors.pink[800],
+      backgroundColor : Colors.orange[800],
       title : Text('Sign-Up'),
       actions :<Widget>[
         FlatButton.icon(onPressed: (){
@@ -77,8 +77,19 @@ print(url);
       ]
 
     ),
-    body: Container(
-      padding: EdgeInsets.symmetric(vertical : 20.0 , horizontal : 50.0),
+    body: SingleChildScrollView(
+       
+      // padding: EdgeInsets.symmetric(vertical : 20.0 , horizontal : 50.0),
+      child : IntrinsicHeight(
+        child : Container(
+          padding: EdgeInsets.symmetric(vertical : 20.0 , horizontal : 50.0),
+          decoration: BoxDecoration(
+       
+        gradient : LinearGradient(colors: [Colors.orange[400],Colors.orange[900],Colors.orange,Colors.red[700],Colors.red[900]],
+         begin : Alignment.topCenter,
+        end : Alignment.bottomCenter,
+        stops: [0.2,0.4,0.6,0.8,1.0])
+      ),
       child : Form(
         key: _formkey,
          child : Column(
@@ -99,7 +110,7 @@ print(url);
                     width : 180,
                      height : 180,
                      
-                     child:(_image!=null)? Image.file( _image,fit : BoxFit.fill): Image.network('https://images.unsplash.com/photo-1585660827561-b425ce4e89c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',fit:BoxFit.fill),
+                     child:(_image!=null)? Image.file( _image,fit : BoxFit.fill): Image.asset('assets/popo.jpg',fit:BoxFit.fill),
                   ),
                   ),
                 
@@ -152,7 +163,7 @@ print(url);
              SizedBox(width : 5.0),
           Slider(
              value: ( age ?? 18.0).toDouble(),
-             activeColor: Colors.amber[900],
+             activeColor: Colors.pink[900],
              min : 18.0,
              max : 30.0,
              divisions: 12,
@@ -218,9 +229,9 @@ print(url);
       )
 
       ))
-    
+    ),
    
       
-    ) );
+    ) ),);
   }
   }

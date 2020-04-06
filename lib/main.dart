@@ -3,8 +3,17 @@ import 'package:covidate/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/users.dart';
-
-void main() => runApp(MyApp());
+import 'package:flutter/foundation.dart';
+import 'dart:io';
+import 'screens/home/chat.dart';
+  
+void main() {
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.dumpErrorToConsole(details);
+    if (kReleaseMode)
+      exit(1);
+  };
+runApp(MyApp());}
  
 class MyApp extends StatelessWidget {
  
@@ -16,7 +25,7 @@ class MyApp extends StatelessWidget {
       
            value : AuthService().user,
             child : MaterialApp(
-      home : Wrapper(),
+      home :Wrapper(),
       debugShowCheckedModeBanner: false,),
     );
   }
