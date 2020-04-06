@@ -3,6 +3,7 @@ import 'package:covidate/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/users.dart';
+import 'screens/userProfile/userprofile.dart';
 
 void main() => runApp(MyApp());
  
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
            value : AuthService().user,
             child : MaterialApp(
       home : Wrapper(),
-      debugShowCheckedModeBanner: false,),
+      debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }
