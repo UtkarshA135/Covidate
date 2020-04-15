@@ -1,4 +1,4 @@
-import 'package:covidate/screens/userProfile/background.dart';
+import 'package:covidate/screens/home/background.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
