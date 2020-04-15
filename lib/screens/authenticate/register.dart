@@ -3,7 +3,7 @@
 import 'dart:io';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:covidate/screens/userProfile/background.dart';
+import 'package:covidate/screens/home/background.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
