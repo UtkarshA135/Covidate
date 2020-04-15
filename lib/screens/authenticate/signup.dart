@@ -1,4 +1,4 @@
-import 'package:covidate/screens/userProfile/background.dart';
+import 'package:covidate/screens/home/background.dart';
 import 'package:covidate/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:covidate/shared/loading.dart';
