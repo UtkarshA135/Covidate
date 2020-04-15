@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
           child: Scaffold(
              key: globalKey,
             
-        backgroundColor: Colors.pink[200],
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title : Text('Home'),
           backgroundColor : Colors.pink[800],
