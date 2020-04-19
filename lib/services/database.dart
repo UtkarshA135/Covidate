@@ -10,7 +10,8 @@ class DatabaseService
 
 final CollectionReference userCollection = Firestore.instance.collection('users');
 
-Future updateUserData( String name , int age , String bio, String gender , String url)
+
+Future updateUserData( String name , int age , String bio, String gender , String url, String uid)
 async
 {
   return await userCollection.document(uid).setData({
@@ -20,8 +21,12 @@ async
     'bio' : bio,
     'gender' : gender,
     'url' : url,
-    
+    'ownerid': uid,
+    'mylikes' : { uid : true},
+    'likes' : { uid : true},
+  
    } );
+   
 }
 
 List<Cards>_cardlistfromsnapshot(QuerySnapshot snapshot){
@@ -32,8 +37,10 @@ List<Cards>_cardlistfromsnapshot(QuerySnapshot snapshot){
      gender: doc.data['gender'] ?? '',
      bio : doc.data['bio'] ?? '',
      url: doc.data['url'] ?? '',
-
-
+     ownerid: doc.data['ownerid'] ??'',
+     mylikes: doc.data['mylikes'],
+     likes:  doc.data['likes']
+    
    );}).toList();
   
 }
@@ -43,8 +50,9 @@ UserData _userDatafromSnapshot(DocumentSnapshot snapshot){
     bio : snapshot.data['bio'],
     name : snapshot.data['name'],
     uid : uid,
-    url:  snapshot.data['url']
-
+    url:  snapshot.data['url'],
+    likes: snapshot.data['likes'],
+    mylikes : snapshot.data['mylikes'],
    );
 }
 Stream<List<Cards>> get cards{

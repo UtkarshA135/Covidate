@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:covidate/models/cards.dart';
 class CardTile extends StatelessWidget {
   final Cards card;
-  CardTile({this.card});
+  final bool showlike;
+  CardTile({this.card,this.showlike});
   @override
   Widget build(BuildContext context) {
- return   Column(children: <Widget>[
+ return   Stack(children: <Widget>[
                             Container(
                           width: 700.0,
                           height: 300.0,
@@ -26,7 +27,7 @@ class CardTile extends StatelessWidget {
                                    ),),)
                        ],)
                         ),
-                      
+                 
                           ],);
     
   }

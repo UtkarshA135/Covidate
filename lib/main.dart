@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'models/users.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:io';
-import 'screens/home/chat.dart';
+import 'package:covidate/screens/home/all_users_screen.dart';
   
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {

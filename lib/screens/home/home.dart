@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:covidate/services/auth.dart';
-import 'chat.dart';
+import 'all_users_screen.dart';
 import 'profile.dart';
 import 'card_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,10 +31,13 @@ class _HomeState extends State<Home> {
           title : Text('Home'),
           backgroundColor : Colors.pink[800],
           actions: <Widget>[
-           
-          ],
+             FlatButton.icon(onPressed: () async {
+              await _auth.signOut();
+            }, icon: Icon(Icons.person), label: Text('Log out'))
+                    ],),
           
-        ),
+          
+        
        body: CardLiist(),
                      ),
     );

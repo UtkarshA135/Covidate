@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> {
              ]);
          }
          else{
-           return Loading();
+           return Center(child :Loading());
          }
          })
       ],)

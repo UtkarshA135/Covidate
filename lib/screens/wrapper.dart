@@ -4,7 +4,7 @@ import 'package:covidate/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:covidate/models/users.dart';
-import 'package:covidate/screens/home/chat.dart';
+import 'package:covidate/screens/home/all_users_screen.dart';
 import 'package:covidate/services/auth.dart';
 import 'package:covidate/screens/home/pagecontroller.dart';
 //import 'package:covidate/screens/home/pagecontroller.dart';
@@ -20,7 +20,5 @@ class Wrapper extends StatelessWidget {
    }
    else 
    return NavigatoBAR();
-      
-   
   }
 }

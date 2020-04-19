@@ -1,24 +1,29 @@
+import 'package:covidate/models/users.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:covidate/services/auth.dart';
-import 'chat.dart';
+import 'package:provider/provider.dart';
+import 'all_users_screen.dart';
 import 'profile.dart';
 import 'home.dart';
 class NavigatoBAR extends StatefulWidget {
+
   @override
   _PagecontrollerState createState() => _PagecontrollerState();
 }
 
 class _PagecontrollerState extends State<NavigatoBAR> {
    int selected_page = 1;
-
+  
+  @override
+  Widget build(BuildContext context) {
+      
   final pageOption = [
  Profile(),
  Home(),
- Chat()
+ AllUsersScreen(),
 
   ];
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
        body: pageOption[selected_page],
       bottomNavigationBar: BottomNavigationBar(

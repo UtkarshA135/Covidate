@@ -30,6 +30,15 @@ dependencies:
   image_picker: ^0.6.4
   firebase_storage: ^3.1.5
   flutter_tindercard: ^0.1.8
+  edge_alert: ^0.0.1
+
+  
+
+ 
+
+
+
+
 
 
 

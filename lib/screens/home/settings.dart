@@ -164,7 +164,9 @@ print(url);
              age ?? userData.age,
              bio ?? userData.bio,
              gender ?? userData.gender,
-             url ?? userData.url);
+             url ?? userData.url,
+             user.uid);
+             
              Navigator.pop(context);
   
          }})),

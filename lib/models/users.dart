@@ -12,5 +12,7 @@ class UserData
   final String gender;
   final String bio;
   final String url;
-  UserData({this.uid,this.name,this.age,this.gender,this.bio,this.url,});
+  final Map likes;
+  final Map mylikes;
+  UserData({this.uid,this.name,this.age,this.gender,this.bio,this.url,this.likes,this.mylikes});
 }

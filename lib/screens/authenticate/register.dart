@@ -1,5 +1,4 @@
-
-
+import 'package:covidate/screens/home/all_users_screen.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,6 +31,7 @@ class _RegisterState extends State<Register> {
   final _formkey = GlobalKey<FormState>();
   final List<String> genders = ['MALE' , 'FEMALE' ,'OTHERS'];
  File _image;
+ final CollectionReference matchRef = Firestore.instance.collection('matches');
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +202,10 @@ print(url);
           { setState(() {
             loading =true;
           });
+              
              dynamic result = await _auth.registerwithEmailandPassword(email, password,name,age,bio,gender,url);
+            
+              
              loading = true;
           if(result == null)
           {
@@ -212,6 +215,8 @@ print(url);
               error = 'Please supply a valid credentials !!  ';
             });
           }
+        
+          
           }
 
          },),),
