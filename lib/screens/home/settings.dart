@@ -1,3 +1,4 @@
+import 'package:covidate/screens/home/background.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -66,10 +67,11 @@ print(url);
         children: <Widget> [
         
           SizedBox(height: 20.0),
-              Expanded(child: 
+              Center(child: 
          Text('Revamp your profile',
          style: TextStyle(
-           fontSize :30.0
+           fontSize :25.0,
+           fontFamily: 'Lobster'
          ),
            
            
@@ -109,6 +111,16 @@ print(url);
          SizedBox(height: 20.0),
          Expanded(child: 
            TextFormField(
+             decoration: InputDecoration(
+               labelText: 'Enter Name',
+               labelStyle: TextStyle(
+                 color: Colors.pink
+               ),
+               //prefixIcon: Icon(Icons.person, color: Colors.pink,),
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(50.0)
+               )
+             ),
              initialValue: userData.name,
            validator: (val) => val.isEmpty ? 'Enter a valid name':null,
            onChanged: (val)
@@ -116,13 +128,15 @@ print(url);
             setState(() => name = val);
            }),),
          SizedBox(height: 20.0),
-         Expanded(child: Row(
+         SingleChildScrollView(
+           scrollDirection: Axis.horizontal,
+           child: Row(
            children : <Widget>[
              Text('Age'),
              SizedBox(width : 5.0),
           Slider(
              value: ( age ?? userData.age).toDouble(),
-             activeColor: Colors.pink[900],
+             activeColor: Colors.pink,
              min : 18.0,
              max : 30.0,
              divisions: 12,
@@ -147,6 +161,16 @@ print(url);
          SizedBox(height: 20.0),
            Expanded(
              child :TextFormField(
+               decoration: InputDecoration(
+               labelText: 'Enter Bio',
+               labelStyle: TextStyle(
+                 color: Colors.pink
+               ),
+              // prefixIcon: Icon(Icons.person, color: Colors.pink,),
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(50.0)
+               )
+             ),
                initialValue: userData.bio,
            validator: (val) => val.isEmpty ? 'Enter a small bio':null,
            onChanged: (val)
@@ -154,10 +178,17 @@ print(url);
             setState(() => bio = val);
            }),),
          SizedBox(height: 20.0),
-         Expanded(child: 
-         RaisedButton(child: Text('Update'),
-         color: Colors.cyan,
-         onPressed:() async {
+         GestureDetector(
+           child: Container(
+             padding: EdgeInsets.all(8.0),
+             width: MediaQuery.of(context).size.width *0.8,
+             decoration: BoxDecoration(
+               gradient: LinearGradient( colors: aquaGradients),
+               borderRadius: BorderRadius.circular(20.0)
+             ),
+             child: Center(child: Text('Update')),
+           ),
+           onTap:() async {
            if(_formkey.currentState.validate())
          {
              await DatabaseService(uid : user.uid).updateUserData(name ?? userData.name,
@@ -169,7 +200,22 @@ print(url);
              
              Navigator.pop(context);
   
-         }})),
+         }}
+         ),
+        //  Expanded(child: 
+        //  RaisedButton(child: Text('Update'),
+        //  color: Colors.cyan,
+        //  onPressed:() async {
+        //    if(_formkey.currentState.validate())
+        //  {
+        //      await DatabaseService(uid : user.uid).updateUserData(name ?? userData.name,
+        //      age ?? userData.age,
+        //      bio ?? userData.bio,
+        //      gender ?? userData.gender,
+        //      url ?? userData.url);
+        //      Navigator.pop(context);
+  
+        //  }})),
         ]
 
       ),);

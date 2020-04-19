@@ -27,7 +27,7 @@ dependencies:
   cloud_firestore: ^0.12.9+4
   provider: ^3.1.0
   flutter_spinkit: ^4.1.2+1
-  image_picker: ^0.6.4
+  image_picker: ^0.6.5
   firebase_storage: ^3.1.5
   flutter_tindercard: ^0.1.8
   edge_alert: ^0.0.1
@@ -40,6 +40,8 @@ dependencies:
 
 
 
+  animated_text_kit: ^2.0.0
+  fancy_bottom_navigation: ^0.3.2
 
 
 
@@ -65,7 +67,7 @@ flutter:
     - assets/popo.jpg
     - assets/virat.jpg
     - assets/Rohit.jpg
-
+    - assets/images.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -91,3 +93,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Lobster
+      fonts:
+        - asset: assets/Lobster-Regular.ttf
+    - family: Pacifico 
+      fonts:
+        - asset: assets/Pacifico-Regular.ttf  

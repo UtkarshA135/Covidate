@@ -2,6 +2,7 @@ import 'package:covidate/screens/home/all_users_screen.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:covidate/screens/home/background.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,38 +68,36 @@ print(url);
 
         
    
- appBar: AppBar(
-      backgroundColor : Colors.orange[800],
-      title : Text('Sign-Up'),
-      actions :<Widget>[
-        FlatButton.icon(onPressed: (){
-          widget.toggleView();
-        }, icon: Icon(Icons.person), label: Text('Sign-In')),
-      ]
+//  appBar: AppBar(
+//       backgroundColor : Colors.orange[800],
+//       title : Text('Sign-Up'),
+//       actions :<Widget>[
+//         FlatButton.icon(onPressed: (){
+//           widget.toggleView();
+//         }, icon: Icon(Icons.person), label: Text('Sign-In')),
+//       ]
 
-    ),
+//     ),
     body: SingleChildScrollView(
        
       // padding: EdgeInsets.symmetric(vertical : 20.0 , horizontal : 50.0),
       child : IntrinsicHeight(
         child : Container(
-          padding: EdgeInsets.symmetric(vertical : 20.0 , horizontal : 50.0),
-          decoration: BoxDecoration(
+          color: Colors.white,
+        padding: EdgeInsets.symmetric(vertical : 20.0 , horizontal : 20.0),
+      //     decoration: BoxDecoration(
        
-        gradient : LinearGradient(colors: [Colors.orange[400],Colors.orange[900],Colors.orange,Colors.red[700],Colors.red[900]],
-         begin : Alignment.topCenter,
-        end : Alignment.bottomCenter,
-        stops: [0.2,0.4,0.6,0.8,1.0])
-      ),
+      //   gradient : LinearGradient(colors: [Colors.orange[400],Colors.orange[900],Colors.orange,Colors.red[700],Colors.red[900]],
+      //    begin : Alignment.topCenter,
+      //   end : Alignment.bottomCenter,
+      //   stops: [0.2,0.4,0.6,0.8,1.0])
+      // ),
       child : Form(
         key: _formkey,
          child : Column(
         children: <Widget> [
         
           SizedBox(height: 20.0),
-         Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children : <Widget>[
               Align(
                 alignment : Alignment.center,
                 child : CircleAvatar(
@@ -110,25 +109,36 @@ print(url);
                     width : 180,
                      height : 180,
                      
-                     child:(_image!=null)? Image.file( _image,fit : BoxFit.fill): Image.asset('assets/popo.jpg',fit:BoxFit.fill),
+                     child:(_image!=null)? Image.file( _image,fit : BoxFit.fill): Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTiJiDlfMaWW0ATIedRlCUByLXqJvRhLHrzdhDTNSYWx_73D_o6&usqp=CAU',fit:BoxFit.fill),
                   ),
                   ),
                 
                   ),
               ),
-              Padding(
-                padding:  EdgeInsets.only(top : 60.0),
-                child:  IconButton(icon: Icon( Icons.camera, size: 30.0), onPressed: (){
-                  getImage();
-                }),
-              ),
-              Padding(padding: EdgeInsets.only(top : 60.0),
-              child:IconButton( icon : Icon(Icons.file_upload),onPressed :() async { await uploadImage();} ),
-              )
+            SizedBox(height: 15.0),
+         Row(
+           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children : <Widget>[
+              FlatButton.icon(icon: Icon( Icons.camera, size: 30.0),label: Text('Choose Image',style: TextStyle(color: Colors.pink
+               ),), onPressed: (){
+                getImage();
+              }),
+              FlatButton.icon( label: Text('Upload Image', style: TextStyle(color: Colors.pink
+               ),),icon : Icon(Icons.file_upload),onPressed :() async { await uploadImage();} )
               ],),
             Expanded(child: 
          TextFormField(
-           
+           decoration: InputDecoration(
+               labelText: 'Enter Email',
+               labelStyle: TextStyle(
+                 color: Colors.pink
+               ),
+               prefixIcon: Icon(Icons.person, color: Colors.pink,),
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(50.0)
+               )
+             ),
            validator: (val) => val.isEmpty ? 'Enter an Email':null,
            onChanged: (val)
            {
@@ -138,6 +148,16 @@ print(url);
          SizedBox(height: 20.0),
          Expanded(child: 
          TextFormField(
+           decoration: InputDecoration(
+               labelText: 'Enter password',
+               labelStyle: TextStyle(
+                 color: Colors.pink
+               ),
+               prefixIcon: Icon(Icons.lock, color: Colors.pink,),
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(50.0)
+               )
+             ),
            validator: (val) => val.length < 6 ? 'Enter a password of atleast 6 characters':null,
            obscureText: true,
            onChanged : (val){
@@ -150,7 +170,16 @@ print(url);
          SizedBox(height : 20.0),
          Expanded(child: 
            TextFormField(
-             
+            decoration: InputDecoration(
+               labelText: 'Enter Name',
+               labelStyle: TextStyle(
+                 color: Colors.pink
+               ),
+              // prefixIcon: Icon(Icons.person, color: Colors.pink,),
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(50.0)
+               )
+             ),
            validator: (val) => val.isEmpty ? 'Enter a valid name':null,
            onChanged: (val)
            { 
@@ -163,7 +192,7 @@ print(url);
              SizedBox(width : 5.0),
           Slider(
              value: ( age ?? 18.0).toDouble(),
-             activeColor: Colors.pink[900],
+             activeColor: Colors.pink,
              min : 18.0,
              max : 30.0,
              divisions: 12,
@@ -188,6 +217,16 @@ print(url);
          SizedBox(height: 20.0),
            Expanded(
              child :TextFormField(
+               decoration: InputDecoration(
+               labelText: 'Enter Bio',
+               labelStyle: TextStyle(
+                 color: Colors.pink
+               ),
+               //prefixIcon: Icon(Icons.person, color: Colors.pink,),
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(50.0)
+               )
+             ),
            validator: (val) => val.isEmpty ? 'Enter a small bio':null,
            onChanged: (val)
            {
@@ -195,9 +234,21 @@ print(url);
            }),),
          SizedBox(height: 20.0),
          Expanded(child: 
-         RaisedButton(child: Text('Sign up'),
-         color: Colors.cyan,
-         onPressed:() async {
+          GestureDetector(
+             child: Container(
+               width: MediaQuery.of(context).size.width*0.8,
+               
+               alignment: Alignment.center,
+             decoration: BoxDecoration(
+               gradient: LinearGradient(colors: aquaGradients),
+               borderRadius: BorderRadius.circular(50.0)
+             ),
+             child: Padding(
+               padding: const EdgeInsets.all(16.0),
+               child: Text('Login' , style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
+             ), 
+           ),
+         onTap:() async {
            if(_formkey.currentState.validate())
           { setState(() {
             loading =true;
@@ -220,6 +271,12 @@ print(url);
           }
 
          },),),
+         FlatButton(
+             child: Text("Already have an account? Login now"),
+             onPressed: (){
+            widget.toggleView();
+          } ,
+           ),
          SizedBox(height : 12.0),
          Expanded(child: 
          Text(error,
@@ -229,6 +286,14 @@ print(url);
            fontSize : 15.0,
 
          ),)),
+         Stack(
+              alignment: Alignment.bottomLeft,
+              children: <Widget>[
+                WavyFooter(),
+                CirclePink(),
+                CircleYellow(),
+              ],
+            )
         ]
 
       )
