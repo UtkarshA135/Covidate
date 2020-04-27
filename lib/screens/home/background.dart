@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 const List<Color> aquaGradients = [
   Color(0xFF5AEAF1),
   Color(0xFF8EF7DA),
@@ -32,6 +33,79 @@ class CirclePink extends StatelessWidget {
       child: Material(
         color: Colors.pink,
         child: Padding(padding: EdgeInsets.all(120)),
+        shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+      ),
+    );
+  }
+}
+// class CircleAqua extends StatelessWidget {
+// +  @override
+// +  Widget build(BuildContext context) {
+// +    return Transform.translate(
+// +      offset: Offset(170.0, 110.0),
+// +      child: Container(
+// +        decoration: ShapeDecoration(
+// +          shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+// +          gradient: LinearGradient(
+// +              colors: aquaGradients,
+// +              begin: Alignment.center,
+// +              end: Alignment.bottomRight),
+// +        ),
+// +        child: Padding(padding: EdgeInsets.all(120)),
+// +      ),
+// +    );
+// +  }
+// +}
+// +}
+class HomeCirclePink extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Transform.translate(
+     offset: Offset(ScreenUtil().setWidth(-15.0), ScreenUtil().setHeight(77.0)),
+      child: Material(
+        color: Colors.pink,
+        child: Padding(padding: EdgeInsets.all(60)),
+       shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+      ),
+    );
+ }
+}
+class CredCirclePink extends StatelessWidget {
+  @override
+ Widget build(BuildContext context) {
+    return Transform.translate(
+      offset: Offset(ScreenUtil().setWidth(250.0), ScreenUtil().setHeight(190.0)),
+      // offset: Offset(ScreenUtil().setWidth(-355.0), ScreenUtil().setHeight(89.0)),
+      child: Material(
+       color: Colors.pink,
+        child: Padding(padding: EdgeInsets.all(60)),
+        shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+      ),
+    );
+  }
+}
+class HomeCircleYellow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Transform.translate(
+      offset: Offset(ScreenUtil().setWidth(-260.0), ScreenUtil().setHeight(190.0)),
+      child: Material(
+        color: Colors.yellow,
+        child: Padding(padding: EdgeInsets.all(70)),
+        shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+      ),
+    );
+  }
+}
+class CredCircleYellow extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Transform.translate(
+       offset: Offset(ScreenUtil().setWidth(-65.0), ScreenUtil().setHeight(230.0)),
+      // offset: Offset(ScreenUtil().setWidth(-150.0), ScreenUtil().setHeight(190.0)),
+      child: Material(
+        color: Colors.yellow,
+        child: Padding(padding: EdgeInsets.all(70)),
         shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
       ),
     );
