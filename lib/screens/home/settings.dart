@@ -71,7 +71,8 @@ print(url);
          Text('Revamp your profile',
          style: TextStyle(
            fontSize :25.0,
-           fontFamily: 'Lobster'
+           fontFamily: 'Lobster',
+           decoration: TextDecoration.overline,
          ),
            
            
@@ -91,7 +92,8 @@ print(url);
                     width : 180,
                      height : 180,
                      
-                     child:(_image!=null)? Image.file( _image,fit : BoxFit.fill): Image.network(userData.url,fit:BoxFit.fill),
+                    //  child:(_image!=null)? Image.file( _image,fit : BoxFit.fill): Image.network(userData.url,fit:BoxFit.fill),
+                    child:(_image!=null)? Image.file( _image,fit : BoxFit.fill):( userData.url ==null? Image.asset('assets/images.png'):Image.network(userData.url,fit:BoxFit.fill)),
                   ),
                   ),
                 
