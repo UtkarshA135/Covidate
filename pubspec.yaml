@@ -31,17 +31,14 @@ dependencies:
   firebase_storage: ^3.1.5
   flutter_tindercard: ^0.1.8
   edge_alert: ^0.0.1
-
-  
-
- 
-
-
-
-
-
   animated_text_kit: ^2.0.0
   fancy_bottom_navigation: ^0.3.2
+  neumorphic: ^0.3.0
+  flutter_svg: ^0.17.4
+  flutter_screenutil: ^1.1.0
+  url_launcher: ^5.4.2
+  share: ^0.6.3+6
+  bubble: ^1.1.9+1
 
 
 
@@ -68,6 +65,9 @@ flutter:
     - assets/virat.jpg
     - assets/Rohit.jpg
     - assets/images.png
+    - assets/woman-svgrepo-com.svg
+    - assets/SteveLambert-Michelle-Kempner-Reading.svg
+    - assets/covidate2.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
@@ -100,3 +100,9 @@ flutter:
     - family: Pacifico 
       fonts:
         - asset: assets/Pacifico-Regular.ttf  
+    - family: Signatra
+      fonts:
+        - asset: assets/Signatra.ttf  
+    - family: Courgette 
+      fonts:
+        - asset: assets/Courgette-Regular.ttf 
