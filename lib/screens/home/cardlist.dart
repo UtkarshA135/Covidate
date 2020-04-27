@@ -74,120 +74,121 @@ final CollectionReference userCollection = Firestore.instance.collection('users'
 
     CardController controller;
      return users!=null ?
-    TinderSwapCard(
-          
-                  orientation: AmassOrientation.BOTTOM,
-                  totalNum: users.length,
-                  stackNum: 8,
-                  swipeEdge: 4.0,
-                  maxWidth: MediaQuery.of(context).size.width * 0.9,
-                  maxHeight: MediaQuery.of(context).size.width * 0.9,
-                  minWidth: MediaQuery.of(context).size.width * 0.8,
-                  minHeight: MediaQuery.of(context).size.width * 0.8,
-                  cardBuilder: (context,index){
-                   ownerId = users[index].ownerid;
-                     if(currentuser == ownerId)
-                     return Container();
-                     else
-                     { 
-                      
-                   //  print(likemine);
-                   likerother = users[index].mylikes[currentuser];
-                  likemine = users[index].likes[currentuser];
-                  print(likemine);
-                  print(likerother);
-                           matchRef.document(currentuser).collection('match');
-                    if(likemine == true && likerother == true)
-                       {
-                       
-                    
-                        match = true;
-
-                      matchRef.document(currentuser).collection('match').document(ownerId).setData({
-                        'name' : users[index].name,
-                        'age' : users[index].age,
-                        'bio': users[index].bio,
-                        'url': users[index].url,
-                        'ownerId': users[index].ownerid
-                      });
-                      matchRef.document(ownerId).collection('match').document(currentuser).setData({});
-                      // _colorfullAlert3();
-                     // matchRef.document(ownerId).collection('match').document(currentuser).setData({});
-
-                       }
-                    return  CardTile(card : users[index], showlike: showLike,);
-                  }},
-              cardController: controller = CardController(),
-              
-                  swipeUpdateCallback:
-                      (DragUpdateDetails details, Alignment align) {
-                    /// Get swiping card's alignment
-                    if (align.x < 0) {
-                      //Card is LEFT swiping
+    Container(
+      child: TinderSwapCard(
             
-                      _colorfullAlert2();
-                       
-                        userCollection.document(ownerId).updateData({'likes.$currentuser':false});
-                        userCollection.document(currentuser).updateData({'mylikes.$ownerId' : false});
-                        matchRef.document(currentuser).collection('match').document(ownerId).get().then((doc){
-                          if(doc.exists)
-                          doc.reference.delete();
-                          //_colorfullAlert3();
+                    orientation: AmassOrientation.BOTTOM,
+                    totalNum: users.length,
+                    stackNum: 8,
+                    swipeEdge: 4.0,
+                    maxWidth: MediaQuery.of(context).size.width * 0.9,
+                    maxHeight: MediaQuery.of(context).size.width * 0.9,
+                    minWidth: MediaQuery.of(context).size.width * 0.8,
+                    minHeight: MediaQuery.of(context).size.width * 0.8,
+                    cardBuilder: (context,index){
+                     ownerId = users[index].ownerid;
+                       if(currentuser == ownerId)
+                       return Container();
+                       else
+                       { 
+                        
+                     //  print(likemine);
+                     likerother = users[index].mylikes[currentuser];
+                    likemine = users[index].likes[currentuser];
+                    print(likemine);
+                    print(likerother);
+                             matchRef.document(currentuser).collection('match');
+                      if(likemine == true && likerother == true)
+                         {
+                         
+                      
+                          match = true;
+
+                        matchRef.document(currentuser).collection('match').document(ownerId).setData({
+                          'name' : users[index].name,
+                          'age' : users[index].age,
+                          'bio': users[index].bio,
+                          'url': users[index].url,
+                          'ownerId': users[index].ownerid
                         });
-                         matchRef.document(ownerId).collection('match').document(currentuser).get().then((doc){
-                          if(doc.exists)
-                          doc.reference.delete();
-                        });
-                    
-                         setState(() {
-                           isLiked = false;
-                           match = false;
-                           likes[currentuser] = false;
-                           showLike = false;
-                         });
+                        matchRef.document(ownerId).collection('match').document(currentuser).setData({});
+                        // _colorfullAlert3();
+                       // matchRef.document(ownerId).collection('match').document(currentuser).setData({});
+
+                         }
+                      return  CardTile(card : users[index], showlike: showLike,);
+                    }},
+                cardController: controller = CardController(),
+                
+                    swipeUpdateCallback:
+                        (DragUpdateDetails details, Alignment align) {
+                      /// Get swiping card's alignment
+                      if (align.x < 0) {
+                        //Card is LEFT swiping
+              
+                        _colorfullAlert2();
+                         
+                          userCollection.document(ownerId).updateData({'likes.$currentuser':false});
+                          userCollection.document(currentuser).updateData({'mylikes.$ownerId' : false});
+                          matchRef.document(currentuser).collection('match').document(ownerId).get().then((doc){
+                            if(doc.exists)
+                            doc.reference.delete();
+                            //_colorfullAlert3();
+                          });
+                           matchRef.document(ownerId).collection('match').document(currentuser).get().then((doc){
+                            if(doc.exists)
+                            doc.reference.delete();
+                          });
+                      
+                           setState(() {
+                             isLiked = false;
+                             match = false;
+                             likes[currentuser] = false;
+                             showLike = false;
+                           });
+                         
+                            
+                      } else if (align.x > 0) {
+                        //Card is RIGHT swiping
+                         userCollection.document(ownerId).updateData({'likes.$currentuser':true});
+                         userCollection.document(currentuser).updateData({'mylikes.$ownerId' : true});
+                             matchRef.document(currentuser).collection('match').document(ownerId).get().then((doc){
+                            if(doc.exists)
+                            _colorfullAlert3();
+                            else
+                              _colorfullAlert(match);
+                             });
+                          
                        
                           
-                    } else if (align.x > 0) {
-                      //Card is RIGHT swiping
-                       userCollection.document(ownerId).updateData({'likes.$currentuser':true});
-                       userCollection.document(currentuser).updateData({'mylikes.$ownerId' : true});
-                           matchRef.document(currentuser).collection('match').document(ownerId).get().then((doc){
-                          if(doc.exists)
-                          _colorfullAlert3();
-                          else
-                            _colorfullAlert(match);
-                           });
-                        
-                     
-                        
-                      // print(likerother);
-                     
-                         setState(() {
-                           isLiked = true;
-                            match = true;
-                           likes[currentuser] = true;
-                           showLike = true;
-                         });
-                  
-               
-                    }
-                   
-                 /*   Timer(Duration(milliseconds : 500),(){
-                           showLike = !showLike;
-                    });
-                      showLike ? Icon(Icons.favorite,size :80.0 ,color : Colors.red): Icon(Icons.not_interested,size :80.0 ,color : Colors.red);*/
+                        // print(likerother);
                        
+                           setState(() {
+                             isLiked = true;
+                              match = true;
+                             likes[currentuser] = true;
+                             showLike = true;
+                           });
+                    
+                 
+                      }
+                     
+                   /*   Timer(Duration(milliseconds : 500),(){
+                             showLike = !showLike;
+                      });
+                        showLike ? Icon(Icons.favorite,size :80.0 ,color : Colors.red): Icon(Icons.not_interested,size :80.0 ,color : Colors.red);*/
                          
+                           
+                      
+                      
+                    },
+                    swipeCompleteCallback:
+                        (CardSwipeOrientation orientation, int index) {
+                      /// Get orientation & index of swiped card!
+                    }
                     
-                    
-                  },
-                  swipeCompleteCallback:
-                      (CardSwipeOrientation orientation, int index) {
-                    /// Get orientation & index of swiped card!
-                  }
-                  
-     ) : Center(
+       ),
+    ) : Center(
        child : CircularProgressIndicator()
      );
-  }
-}
+  
