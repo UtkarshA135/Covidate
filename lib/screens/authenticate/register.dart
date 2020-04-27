@@ -33,7 +33,12 @@ class _RegisterState extends State<Register> {
   final List<String> genders = ['MALE' , 'FEMALE' ,'OTHERS'];
  File _image;
  final CollectionReference matchRef = Firestore.instance.collection('matches');
-
+ bool _isvisible= true;
+ void toggleVisibility(){
+   setState(() {
+     _isvisible = !_isvisible;
+  });
+}
   @override
   Widget build(BuildContext context) {
 
@@ -156,10 +161,14 @@ print(url);
                prefixIcon: Icon(Icons.lock, color: Colors.pink,),
                border: OutlineInputBorder(
                  borderRadius: BorderRadius.circular(50.0)
-               )
+               ),
+               suffixIcon: IconButton(
+                 onPressed: toggleVisibility,
+                 icon: Icon(!_isvisible? Icons.visibility: Icons.visibility_off))
              ),
            validator: (val) => val.length < 6 ? 'Enter a password of atleast 6 characters':null,
-           obscureText: true,
+          //  obscureText: true,
+          obscureText: _isvisible,
            onChanged : (val){
              setState(() =>
                password=val
@@ -204,18 +213,56 @@ print(url);
            SizedBox(width : 5.0),
            Text('$age'),]),),        
             SizedBox(height: 20.0),
-           DropdownButtonFormField(
-            value: gender ?? 'MALE',
-            items: genders.map((gen){
-           return DropdownMenuItem(value: gen,child: Text(gen));
-          }).toList(),
-          
+          //  DropdownButtonFormField(
+          //   value: gender ?? 'MALE',
+          //   items: genders.map((gen){
+          //  return DropdownMenuItem(value: gen,child: Text(gen));
+          // }).toList(),
+           SizedBox(height:10.0),
+           Align(
+             alignment: Alignment.centerLeft,
+             child:Text('Gender:')),
+           SizedBox(height:10.0),
+            Row(
+              children: <Widget>[
+                Radio(
+                value:  'MALE',
+                groupValue: gender,
            onChanged: (val)
            {
             setState(() => gender = val);
            }),
-         SizedBox(height: 20.0),
-           Expanded(
+           Text('Male'),
+            
+             ],),
+            Row(
+              children: <Widget>[
+                Radio(
+                value:  'FEMALE',
+                groupValue: gender,
+           onChanged: (val)
+           {
+              setState(() => gender = val);
+           }),
+           Text('Female'),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+               Radio(
+                  activeColor: Colors.pink,
+                value:  'OTHERS',
+                groupValue: gender,
+           onChanged: (val)
+           {
+           {
+              setState(() => gender = val);
+           }}),
+           Text('Others'),
+              ],
+            ),
+        SizedBox(height: 20.0),
+          Expanded(
              child :TextFormField(
                decoration: InputDecoration(
                labelText: 'Enter Bio',
@@ -245,7 +292,7 @@ print(url);
              ),
              child: Padding(
                padding: const EdgeInsets.all(16.0),
-               child: Text('Login' , style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
+               child: Text('Register' , style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
              ), 
            ),
          onTap:() async {
@@ -269,7 +316,7 @@ print(url);
         
           
           }
-
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn() ));
          },),),
          FlatButton(
              child: Text("Already have an account? Login now"),
