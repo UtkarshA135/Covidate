@@ -62,6 +62,9 @@ Future registerwithEmailandPassword(String email, String password , String name,
         return null;
      }
    }
+    Future sendPasswordResetEmail(String email) async {
+    return _auth.sendPasswordResetEmail(email: email);
+  }
    Future signOut()
     async {
      try{ return await _auth.signOut();
