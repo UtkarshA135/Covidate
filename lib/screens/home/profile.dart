@@ -6,6 +6,7 @@ import 'package:covidate/models/users.dart';
 import 'package:provider/provider.dart';
 import 'package:covidate/services/auth.dart';
 import 'settings.dart';
+import 'package:neumorphic/neumorphic.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 class Profile extends StatefulWidget {
   @override
@@ -84,7 +85,7 @@ class _ProfileState extends State<Profile> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: (userData.url!=null)? NetworkImage(userData.url) : AssetImage('assets/image.png'),
+                image: (userData.url!=null)? NetworkImage(userData.url) : AssetImage('assets/images.png'),
                 // Image.network(userData.url,fit : BoxFit.fill): Image.asset('assets/image.png',fit:BoxFit.fill),,
               ),
               boxShadow: [
@@ -135,19 +136,45 @@ class _ProfileState extends State<Profile> {
                ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          RaisedButton.icon(
-                            color: Colors.white,
-                            onPressed: ()=> showSettingpanel(),
-                            icon: Icon(Icons.edit),
-                            label: Text('Edit Profile')
-                            ),
-                           RaisedButton.icon(
-                             color: Colors.white,
-                             onPressed: () async {await _auth.signOut();},
-                             icon: Icon(Icons.exit_to_app), 
-                             label: Text('Log out')
-                             )
+                       children: <Widget>[
+                            Column(
+                            children: <Widget>[
+                              NeuButton(
+                                //color: Colors.white,
+                                child: Icon(Icons.edit),
+                                onPressed: ()=> showSettingpanel(),
+                                decoration: NeumorphicDecoration(
+                                   shape: BoxShape.circle ,
+                                  color: Colors.white
+                                 )
+                                ),
+                                Text('Edit Profile',
+                                  style: TextStyle(
+                                   fontFamily: 'Lobster',
+                                   color: Colors.grey[700],
+                                  ),
+                          )
+                            ],
+
+                         ),
+                           Column(
+                            children: <Widget>[
+                              NeuButton(
+                                 onPressed: () async {await _auth.signOut();},
+                                child: Icon(Icons.exit_to_app),
+                                 decoration: NeumorphicDecoration(
+                                   shape: BoxShape.circle ,
+                                  color: Colors.white 
+                                 ),
+                                 ),
+                               Text('Log Out',
+                                  style: TextStyle(
+                                   fontFamily: 'Lobster',
+                                   color: Colors.grey[700],
+                                  ),
+                                 )
+                             ],
+                           )
                         ],),
                     ),
                     Padding(
@@ -175,3 +202,4 @@ class _ProfileState extends State<Profile> {
     
   }
 }
+
