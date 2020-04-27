@@ -8,6 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:bubble/bubble.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatScreen extends StatefulWidget {
   String name;
@@ -47,13 +49,13 @@ class _ChatScreenState extends State<ChatScreen> {
         print("sender uid : $_senderuid");
         getSenderPhotoUrl(_senderuid).then((snapshot) {
           setState(() {
-            senderPhotoUrl = snapshot['photoUrl'];
+            senderPhotoUrl = snapshot['url'];
             senderName = snapshot['name'];
           });
         });
         getReceiverPhotoUrl(widget.receiverUid).then((snapshot) {
           setState(() {
-            receiverPhotoUrl = snapshot['photoUrl'];
+            receiverPhotoUrl = snapshot['url'];
             receiverName = snapshot['name'];
           });
         });
@@ -97,7 +99,35 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(widget.name),
+         // title: Text(widget.name),
+             backgroundColor: Color(0xFF5AEAF1),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios,
+            color: Colors.black,
+            ),
+            onPressed: (){
+              // print('back');
+              Navigator.pop(context);
+            },
+          ),
+          centerTitle: false,
+          title: ListTile(
+            contentPadding: EdgeInsets.only(left: 0.0),
+             leading:
+              CircleAvatar(
+                // radius: 25.0,
+               backgroundColor: Colors.black,
+            backgroundImage: NetworkImage(widget.photoUrl),
+              ),
+         title: Text(widget.name,
+            style: TextStyle(
+              fontFamily: 'Lobster',
+              color: Colors.black,
+              fontSize: ScreenUtil().setSp(70.0),
+            ),
+          ),
+
+          )
         ),
         body: Form(
           key: _formKey,
@@ -133,7 +163,7 @@ class _ChatScreenState extends State<ChatScreen> {
             child: IconButton(
               splashColor: Colors.white,
               icon: Icon(
-                Icons.camera_alt,
+                Icons.photo,
                 color: Colors.black,
               ),
               onPressed: () {
@@ -153,7 +183,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   hintText: "Enter message...",
                   labelText: "Message",
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5.0))),
+                      borderRadius: BorderRadius.circular(25.0))),
               onFieldSubmitted: (value) {
                 _messageController.text = value;
               },
@@ -306,17 +336,19 @@ class _ChatScreenState extends State<ChatScreen> {
           child: Row(
             mainAxisAlignment: snapshot['senderUid'] == _senderuid?
             MainAxisAlignment.end : MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               snapshot['senderUid'] == _senderuid
-                  ? CircleAvatar(
-                      backgroundImage: senderPhotoUrl == null
-                          ? AssetImage('assets/blankimage.png')
-                          : NetworkImage(senderPhotoUrl),
-                      radius: 20.0,
-                    )
+                ? Text('')
+                  // ? CircleAvatar(
+                  //     backgroundImage: senderPhotoUrl == null
+                  //         ? AssetImage('assets/blankimage.png')
+                  //         : NetworkImage(senderPhotoUrl),
+                  //     radius: 20.0,
+                  //   )
                   : CircleAvatar(
                       backgroundImage: receiverPhotoUrl == null
-                          ? AssetImage('assets/blankimage.png')
+                          ? AssetImage('assets/images.png')
                           : NetworkImage(receiverPhotoUrl),
                       radius: 20.0,
                     ),
@@ -327,43 +359,103 @@ class _ChatScreenState extends State<ChatScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   snapshot['senderUid'] == _senderuid
-                      ? new Text(
-                          senderName == null ? "" : senderName,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold),
-                        )
-                      : new Text(
-                          receiverName == null ? "" : receiverName,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                  snapshot['type'] == 'text'
-                      ? new Text(
-                          snapshot['message'],
-                          style: TextStyle(color: Colors.black, fontSize: 14.0),
-                        )
-                      : InkWell(
-                          onTap: (() {
-                            Navigator.push(
-                                context,
-                                new MaterialPageRoute(
-                                    builder: (context) => FullScreenImage(photoUrl: snapshot['photoUrl'],)));
-                          }),
-                          child: Hero(
-                            tag: snapshot['photoUrl'],
-                            child: FadeInImage(
-                              image: NetworkImage(snapshot['photoUrl']),
-                              placeholder: AssetImage('assets/blankimage.png'),
-                              width: 200.0,
-                              height: 200.0,
+                  //     ? new Text(
+                  //         senderName == null ? "" : senderName,
+                  //         style: TextStyle(
+                  //             color: Colors.black,
+                  //             fontSize: 16.0,
+                  //             fontWeight: FontWeight.bold),
+                  //       )
+                  //     : new Text(
+                  //         receiverName == null ? "" : receiverName,
+                  //         style: TextStyle(
+                  //             color: Colors.black,
+                  //             fontSize: 16.0,
+                  //             fontWeight: FontWeight.bold),
+                  //       ),
+                  // snapshot['type'] == 'text'
+                  //     ? new Text(
+                  //         snapshot['message'],
+                  //         style: TextStyle(color: Colors.black, fontSize: 14.0),
+                  //       )
+                  //     : InkWell(
+                  //         onTap: (() {
+                  //           Navigator.push(
+                  //               context,
+                  //               new MaterialPageRoute(
+                  //                   builder: (context) => FullScreenImage(photoUrl: snapshot['photoUrl'],)));
+                  //         }),
+                  //         child: Hero(
+                  //           tag: snapshot['photoUrl'],
+                  //           child: FadeInImage(
+                  //             image: NetworkImage(snapshot['photoUrl']),
+                  //             placeholder: AssetImage('assets/blankimage.png'),
+                  //             width: 200.0,
+                  //             height: 200.0,
+                  //           ),
+                  //         ),
+                  //       )
+                  ? Container(
+                              width:MediaQuery.of(context).size.width*0.7,
+                             child: Bubble(
+                                margin: BubbleEdges.only(top: 10),
+                                shadowColor: Colors.blue,
+                                elevation: 2,
+                                alignment: snapshot['senderUid'] == _senderuid? Alignment.topRight: Alignment.topLeft,
+                                nip:snapshot['senderUid'] == _senderuid?  BubbleNip.rightTop: BubbleNip.leftTop,
+
+                              child: Text(
+                                snapshot['message'],
+                                style: TextStyle(color: Colors.black, fontSize: 14.0),
+                               overflow: TextOverflow.ellipsis,
+                                maxLines: 5,
                             ),
-                          ),
-                        )
-                ],
+                        ),
+                     )
+                      : Bubble(
+                        margin: BubbleEdges.only(top: 10.0),
+                        // padding:BubbleEdges.all(0.0) ,
+                                shadowColor: Colors.blue,
+                                elevation: 2,
+                                alignment: snapshot['senderUid'] == _senderuid? Alignment.topRight: Alignment.topLeft,
+                                nip:snapshot['senderUid'] == _senderuid?  BubbleNip.rightTop: BubbleNip.leftTop,
+
+                            child: InkWell(
+                            onTap: (() {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) => FullScreenImage(photoUrl: snapshot['photoUrl'],)));
+                            }),
+                            child: Hero(
+                              tag: snapshot['photoUrl'],
+                              child: FadeInImage(
+                               image: NetworkImage(snapshot['photoUrl']),
+                               placeholder: AssetImage('assets/images.png'),
+                               width: MediaQuery.of(context).size.width*0.4,
+                                // height: 50.0,
+                             ),),),),
+                              SizedBox(width: 10.0,
+              // height: 50.0,
+              ),
+              snapshot['senderUid'] == _senderuid 
+
+                  ? CircleAvatar(
+                    // backgroundImage: NetworkImage(senderPhotoUrl) ,
+                      backgroundImage: senderPhotoUrl == null
+                          ? AssetImage('assets/images.png')
+                          : NetworkImage(senderPhotoUrl),
+                      radius: 20.0,
+                    )
+                    : Text('') ,
+                  // :CircleAvatar(
+                  //     backgroundImage: 
+                  //     receiverPhotoUrl == null
+                  //         ? AssetImage('assets/blankimage.png'):
+                  //          NetworkImage(receiverPhotoUrl),
+                  //     radius: 20.0,
+                  //   ),
+               ],
               )
             ],
           ),
