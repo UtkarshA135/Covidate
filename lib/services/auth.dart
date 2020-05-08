@@ -5,10 +5,44 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:covidate/models/users.dart';
 import 'database.dart';
-
+import 'package:flutter/widgets.dart';
 import 'package:path/path.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+// class ImageUploadGet extends StatefulWidget {
+//   @override
+//   _ImageUploadGetState createState() => _ImageUploadGetState();
+// }
+
+// class _ImageUploadGetState extends State<ImageUploadGet> {
+//   @override
+//   Widget build(BuildContext context) {
+//    String url;
+// File _image;
+// Future  getImage() async {
+// var image = await ImagePicker.pickImage( source : ImageSource.gallery);
+// setState (()
+// {
+//     _image = image;
+//  }
+//  );
+// }
+
+// Future  uploadImage() async{
+// final StorageReference postImgref = FirebaseStorage.instance.ref().child('Post Images');
+// var timeKey = new DateTime.now();
+// final StorageUploadTask uploadTask = postImgref.child(timeKey.toString()+'.jpg').putFile(_image);
+// var imgurl = await(await uploadTask.onComplete).ref.getDownloadURL();
+// url = imgurl.toString();
+// print(url);
+//  }
+
+//   }
+// }
+
+
 class AuthService
 {
  

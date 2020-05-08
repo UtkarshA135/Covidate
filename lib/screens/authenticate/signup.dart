@@ -47,7 +47,7 @@ class _SignUpState extends State<SignIn> {
             ),
               Padding(
         // color: Colors.white,
-        padding: EdgeInsets.fromLTRB(20.0, 150.0, 10.0 , 5.0),
+        padding: EdgeInsets.fromLTRB(20.0, 0.0, 10.0 , 5.0),
         child : Form(
               key: _formkey,
                child : Column(
@@ -152,7 +152,31 @@ class _SignUpState extends State<SignIn> {
                  fontSize : 15.0,
 
                ),),
-
+                Container(
+                  child: Column(
+                    children: <Widget>[
+                      Text('Powered to you by:',
+                        style: TextStyle(
+                          fontFamily: 'Lobster',
+                          fontSize: 16.0,
+                        )
+                      ),
+                      SizedBox(
+                        height:10.0,
+                      ),
+                      Image.asset('assets/poweredby.jpeg', height: MediaQuery.of(context).size.height*0.2),
+                      SizedBox(
+                        height:10.0,
+                      ),
+                      Text('Team Codiyapa',
+                        style: TextStyle(
+                          fontFamily: 'Lobster',
+                          fontSize: 16.0,
+                        )
+                      ),
+                    ],
+                  ),
+                ),
                  Stack(
                   alignment: Alignment.bottomLeft,
                   children: <Widget>[

@@ -64,8 +64,8 @@ class HomeCirclePink extends StatelessWidget {
      offset: Offset(ScreenUtil().setWidth(-15.0), ScreenUtil().setHeight(77.0)),
       child: Material(
         color: Colors.pink,
-        child: Padding(padding: EdgeInsets.all(60)),
-       shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+        child: Padding(padding: EdgeInsets.all(ScreenUtil().setWidth(180))),
+       shape: CircleBorder(side: BorderSide(color: Colors.white, width: ScreenUtil().setWidth(45.0))),
       ),
     );
  }
@@ -78,8 +78,8 @@ class CredCirclePink extends StatelessWidget {
       // offset: Offset(ScreenUtil().setWidth(-355.0), ScreenUtil().setHeight(89.0)),
       child: Material(
        color: Colors.pink,
-        child: Padding(padding: EdgeInsets.all(60)),
-        shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+        child: Padding(padding: EdgeInsets.all(ScreenUtil().setWidth(180))),
+        shape: CircleBorder(side: BorderSide(color: Colors.white, width: ScreenUtil().setWidth(45.0))),
       ),
     );
   }
@@ -91,8 +91,8 @@ class HomeCircleYellow extends StatelessWidget {
       offset: Offset(ScreenUtil().setWidth(-260.0), ScreenUtil().setHeight(190.0)),
       child: Material(
         color: Colors.yellow,
-        child: Padding(padding: EdgeInsets.all(70)),
-        shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+        child: Padding(padding: EdgeInsets.all(ScreenUtil().setWidth(210))),
+        shape: CircleBorder(side: BorderSide(color: Colors.white, width: ScreenUtil().setWidth(45.0))),
       ),
     );
   }
@@ -105,8 +105,8 @@ class CredCircleYellow extends StatelessWidget {
       // offset: Offset(ScreenUtil().setWidth(-150.0), ScreenUtil().setHeight(190.0)),
       child: Material(
         color: Colors.yellow,
-        child: Padding(padding: EdgeInsets.all(70)),
-        shape: CircleBorder(side: BorderSide(color: Colors.white, width: 15.0)),
+        child: Padding(padding: EdgeInsets.all(ScreenUtil().setWidth(210))),
+        shape: CircleBorder(side: BorderSide(color: Colors.white, width: ScreenUtil().setWidth(45.0))),
       ),
     );
   }
