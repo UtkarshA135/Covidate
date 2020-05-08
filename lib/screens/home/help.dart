@@ -107,7 +107,7 @@ class _HelpState extends State<Help>  with SingleTickerProviderStateMixin {
                 margin:EdgeInsets.only(top: 30.0),
                padding: EdgeInsets.all(16.0),
                child: Text(
-                 'Covidate is to find your match ;) \n\n Right Swipe if you think you found your perfect one \n\n Left Swipe if you are not interested \n\n You will be matched with someone if both of you right swiped each other\n\n If you match with someone, the chat feature will open, and you can share your love',
+                 'Covidate is an online plaatform to find your soulmate as well as new friends ;) \n\n Right Swipe if you think you are interested\n\n Left Swipe if you are not interested \n\n You will be matched with someone if both of you right swiped each other\n\n If you match with someone, the chat feature will open, and you can begin to strengthen your bond',
                  style: TextStyle(
                    fontSize: ScreenUtil().setSp(60.0),
                   //  fontWeight: FontWeight.w00,

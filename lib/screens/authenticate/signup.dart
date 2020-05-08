@@ -45,6 +45,13 @@ class _SignUpState extends State<SignIn> {
               // width: MediaQuery.of(context).size.width*1.0,
               // scale: 4.0,
             ),
+            SizedBox(height : 5.0),
+            Text("Spread Love Not Covid-19",style : TextStyle(
+                          fontFamily: "Lobster",
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+
+            )),
               Padding(
         // color: Colors.white,
         padding: EdgeInsets.fromLTRB(20.0, 0.0, 10.0 , 5.0),
@@ -164,7 +171,9 @@ class _SignUpState extends State<SignIn> {
                       SizedBox(
                         height:10.0,
                       ),
-                      Image.asset('assets/poweredby.jpeg', height: MediaQuery.of(context).size.height*0.2),
+                      CircleAvatar(
+                        backgroundImage : AssetImage('assets/poweredby.jpeg'),
+                        radius : 30.0),
                       SizedBox(
                         height:10.0,
                       ),
