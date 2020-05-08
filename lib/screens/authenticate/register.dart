@@ -300,11 +300,21 @@ print(url);
           { setState(() {
             loading =true;
           });
-              
+           loading = true;
+                  if(url == null)
+          {
+            setState(() {
+               loading = false;
+              error = 'Please upload a image !!  ';
+
+            });
+          }
+           else //
+           {
              dynamic result = await _auth.registerwithEmailandPassword(email, password,name,age,bio,gender,url);
             
               
-             loading = true;
+            
           if(result == null)
           {
             
@@ -317,7 +327,7 @@ print(url);
           
           }
             Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn() ));
-         },),),
+         }},),),
          FlatButton(
              child: Text("Already have an account? Login now"),
              onPressed: (){

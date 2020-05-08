@@ -3,8 +3,8 @@ import 'package:covidate/models/cards.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CardTile extends StatelessWidget {
   final Cards card;
-  final bool showlike;
-  CardTile({this.card,this.showlike});
+ 
+  CardTile({this.card});
   @override
   Widget build(BuildContext context) {
  return   Stack(children: <Widget>[
@@ -17,7 +17,7 @@ class CardTile extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10.0),
                               image: DecorationImage(
                                   // image: NetworkImage(card.url),
-                                  image: card.url ==null? AssetImage('assets/Rohit.jpg'):NetworkImage(card.url),
+                                  image: card.url ==null? AssetImage('assets/virat.jpg'):NetworkImage(card.url),
                                   fit: BoxFit.cover)),
                       //              child: Column(children: <Widget>[
                          

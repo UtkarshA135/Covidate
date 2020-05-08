@@ -41,22 +41,7 @@ class _PagecontrollerState extends State<NavigatoBAR> {
     inactiveIconColor: Color(0xFF5AEAF1),
        ),
 
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: selected_page,
-      //   type: BottomNavigationBarType.fixed,
-       
-      //   items: [
-      //   BottomNavigationBarItem(icon: Icon(Icons.person), title : Text('Profile'), backgroundColor: Colors.yellowAccent,),
-      //   BottomNavigationBarItem(icon: Icon(Icons.favorite), title : Text('Cards'), backgroundColor: Colors.yellowAccent,),
-      //   BottomNavigationBarItem(icon: Icon(Icons.chat_bubble), title : Text('Chat'), backgroundColor: Colors.yellowAccent,),
-      //   ],
-      //   onTap: (index){
-      //     setState(()
-      //     {
-      //      selected_page = index;
-      //     });
-      //   },
-      //                    )
+     
     );
   }
 }

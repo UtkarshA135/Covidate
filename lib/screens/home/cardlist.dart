@@ -18,12 +18,11 @@ class CardLiist extends StatefulWidget {
 final FirebaseAuth _auth = FirebaseAuth.instance;
 Future<FirebaseUser> _curreent =  _auth.currentUser();
 class _CardLiistState extends State<CardLiist> {
-  Map likes;
-  bool isLiked;
+
+
  bool likerother = true;
   bool likemine;
-  bool showLike = true;
-  
+
 final CollectionReference userCollection = Firestore.instance.collection('users');
  CollectionReference matchRef= Firestore.instance.collection('matches');
 
@@ -68,7 +67,7 @@ final CollectionReference userCollection = Firestore.instance.collection('users'
  
     final String currentuser = user?.uid;
     // isLiked = (likes[currentuser]==true);
-     String ownerId = null ;
+     String ownerId  ;
     
       matchRef.document(currentuser).setData({});
 
@@ -116,7 +115,7 @@ final CollectionReference userCollection = Firestore.instance.collection('users'
                        // matchRef.document(ownerId).collection('match').document(currentuser).setData({});
 
                          }
-                      return  CardTile(card : users[index], showlike: showLike,);
+                      return  CardTile(card : users[index]);
                     }},
                 cardController: controller = CardController(),
                 
@@ -140,12 +139,12 @@ final CollectionReference userCollection = Firestore.instance.collection('users'
                             doc.reference.delete();
                           });
                       
-                           setState(() {
+                         /*  setState(() {
                              isLiked = false;
                              match = false;
                              likes[currentuser] = false;
                              showLike = false;
-                           });
+                           });*/
                          
                             
                       } else if (align.x > 0) {
@@ -163,12 +162,12 @@ final CollectionReference userCollection = Firestore.instance.collection('users'
                           
                         // print(likerother);
                        
-                           setState(() {
+                         /*  setState(() {
                              isLiked = true;
                               match = true;
                              likes[currentuser] = true;
                              showLike = true;
-                           });
+                           });*/
                     
                  
                       }
@@ -192,3 +191,5 @@ final CollectionReference userCollection = Firestore.instance.collection('users'
        child : CircularProgressIndicator()
      );
   
+  }
+}

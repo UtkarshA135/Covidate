@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidate/screens/authenticate/register.dart';
 import 'package:covidate/shared/loading.dart';
 import 'package:flutter/material.dart';
@@ -297,4 +297,4 @@ final globalKey = GlobalKey<ScaffoldState>();
    
  
     }
-    
+    */
